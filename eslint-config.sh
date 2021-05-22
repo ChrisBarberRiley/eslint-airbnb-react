@@ -53,7 +53,7 @@ finished=false
 
 # Max Line Length Prompt
 while ! $finished; do
-  read -p "What max line length do you want to set for ESLint and Prettier? (Recommendation: 100)"
+  read -p "What max line length do you want to set for ESLint and Prettier? (Recommendation: 80)"
   if [[ $REPLY =~ ^[0-9]{2,3}$ ]]; then
     max_len_val=$REPLY
     finished=true
@@ -64,7 +64,7 @@ while ! $finished; do
 done
 
 # Trailing Commas Prompt
-echo "What style of trailing commas do you want to enforce with Prettier?"
+echo "What style of trailing commas do you want to enforce with Prettier? (should be all)"
 echo -e "${YELLOW}>>>>> See https://prettier.io/docs/en/options.html#trailing-commas for more details.${NC}"
 select trailing_comma_pref in "none" "es5" "all"; do
   case $trailing_comma_pref in
@@ -217,6 +217,12 @@ else
   ]
 }' >> .eslintrc${config_extension}
 fi
+
+echo ${config_opening}'
+  "printWidth": '80',
+  "singleQuote": true,
+  "trailingComma": "all"
+}' >> .prettierrc${config_extension}
 
 echo
 echo -e "${GREEN}Finished setting up!${NC}"
