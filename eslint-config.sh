@@ -219,7 +219,7 @@ else
 fi
 
 echo ${config_opening}'
-  "printWidth": '80',
+  "printWidth": 80,
   "singleQuote": true,
   "trailingComma": "all"
 }' >> .prettierrc${config_extension}
